@@ -56,6 +56,7 @@ public class Array {
         //O(N) --> Linear time
         //What if element is found at first--it doesn't take the best scenario,,,take worst scenario too
 
+        //add
 
 
 

@@ -1,0 +1,17 @@
+== Equality...
+for primitives it works fine..as it checks if they are pointing to the same memory location
+Equality with objects
+Two objects with two different references so they are unequal....
+but two objects with two different references but same data in member variables....???
+Java says they aren't equal...
+
+so we have a hook equals() method from object method
+Can be overridden
+
+
+----Hashing----
+process of taking object and reducing in one value...hashCode
+hash code should be same...always if u run hashcode method any number of times
+hash collision  -- same hash code of two different objects
+
+hashCode is a method in java

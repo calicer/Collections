@@ -1,0 +1,23 @@
+Iterator -- how it behaves in each collection.
+Every collection that follows iterator pattern returns Iterator object...basically says i m incharge of iteration..
+What user does is asking for next Item...
+Iterator array list gives u can be different that what HashMap gives you
+All collections api have iterator
+They all follow the same interface
+boolean hasNext()
+E Next()
+void remove()
+void forEachRemaining(Consumer<? super E> action)
+Iterator gives reference---each iterator makes it own reference...3 iterators pointing at their only location
+
+Sometimes they don't like modifications of underlying collections...
+It detects that someone modified the collection and throws exception
+Because iterator works on pointing kind of thing..suppose u added an element and current element on which iterator is now moved
+WHat should iterator do..return added one or moved one...Concurrent modification Exception
+
+For-each loop -- it basically calls iterator...sugar wrapper
+for (Type element : iterable){
+}
+finer grain control on iterator...so we use it....
+
+

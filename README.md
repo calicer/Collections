@@ -380,3 +380,79 @@ When to use set?
 HashSet vs TreeSet
 - Use Hash set when Order is not important, sorting is not important, good hashing strategy, predicatable load factor
 
+
+## Map - Key/Value pair
+
+- doesn't have Collection interface
+- cannot have duplicate keys
+- put()
+- get()
+- replace(Key k, Value v)
+
+## Iterating over Map
+- KeySet 
+
+
+ for(KeyType key : map.keySet()){
+     sout(Key)
+ }
+
+ - Values
+
+  for(ValueType value : map.values()){
+     sout(value)
+ }
+
+ - EntrySet (Map.Entry<K,V>)
+
+
+ for(Map.entry<K,V> entry : map.entrySet()){
+    sout(entry.getKey().....entry.getValue())
+ }
+
+
+ -------
+ getOrDefault(Key, default) --- returns if value is not there then "default" value is returned
+
+ ------
+ putIfAbsent(Key, element)  
+
+ -----
+
+ map.forEach((k,v) -> sout(value))
+
+ ----
+ computeIfAbsent(key, lambda function for making a default vaue i key is absent)
+
+ ------
+
+ ## HashMap
+ It figures out the hashCode of the key then it uses that as bucket. 
+ A single key can contain single value
+ It maps hashCode to key/value pairs. Here linkedList is not just the elements but the Key/Value pairs
+
+ ## Performance
+ - get O(1)
+ - containsKey O(1)
+ - put O(1)
+
+
+ ## Collections Class - utility class
+
+ - This class contains static methods that operate on or return collections.
+
+ ----
+ - Collections.emptySet() ---> returns an empty set (Immutable)
+ - Collections.emptyMap() ---> returns an empty map (Immutable)
+ - Collections.emptyList() ---> returns an empty List (Immutable)
+
+Usage of immutatble collections: Suppose we are calling an API which expects set as an argument but you dont have any values there instead of creating a new set and passing that in you pass Collections.emptySet() and say I intentionally dont want any elements to this argument.
+
+
+---
+- addAll(Collection<? super T> c, T...elements) --> varargs as new elements.
+- max(Collection)
+- min(Collection)
+- reverseOrder()
+- reverseOrder(Comparator)
+

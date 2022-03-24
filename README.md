@@ -198,3 +198,185 @@ compare(o1,o2);  Third party Comparator
 We can create n number of them.
 Pass an instance of Comparator to sort() method.
 
+##Collection Interface..Top level interface
+
+- Root interface in collection hirearchy
+- No direct implementation in JDK
+- Sub interfaces for collection types - lie Set,List
+- Generic methods for adding and removing from the collection
+- Underlying implementation decides what happens when the methods are called
+
+
+All other are children. Map is an exception.. map doesnot implement Collection.
+
+Collections is diffrent. Generic interface.
+
+It extends Iterable interface.
+Any collecion is iterable.
+
+Certain methods are specified to be optional.
+
+If a collection implementation doesnot implementation a particular operation, it should define the corresponding method to throw UnsupportedOpertationException.
+
+Immutable Collections in java????
+
+
+## Methods in Collections
+- add()
+- addAll()
+- remove()
+- removeAll()
+- clear()
+- retainAll()
+- isEmpty()
+- size()
+- iterator()
+- stream()
+- toArray()
+----
+
+# List - An ordered collection of elements
+
+Storing items in order with index based access
+
+Insertion order is natural(default).
+
+- remove(int index) 
+- set(int index, E element)
+- replaceAll(UnaryOperator<E> operator)
+- contains()
+- containsAll()
+- indexOf(Object o)
+- lastIndexOf(Object o)
+
+- E get(int index)
+- List<E> subList(int fromIndex, int toIndex)
+
+- Iterator<E> iterator();
+- ListIterator<E> listIterator();
+- ListIterator<E> listIterator(int index);
+- default Spliterator();
+- void sort(Comparator<? super E> c);
+
+
+performance of ArrayList
+- get - O(1)
+- set - O(1)
+- contains - O(n)
+- remove(0) - O(n)
+- add(0) - O(n)
+- add - is it O(n) at the end ?? but what if it overflows it creates a new arrayList of bigger size copies the elements
+   Best case - O(1), Worst case O(n) - Most cases - O(1)
+   so we take most of the case as Big O notation a overflowing happens not often
+
+
+Amortized time - whats the net time it takes (in our arrayList overflow example just split the O(n) worst case to n and we will get lesser Big O notation so O(1))
+
+## LinkedList - Node based access(value and address)
+
+LinkedList performance
+---
+- get - O(n)
+- set - O(n)
+- contains - O(n)
+
+- remove(0) - O(1)
+- add(0) - O(1)
+- add(n) - O(1)     //faster than arrayList --in likedList we can directly change the address values of preceeding and next element of n but first we need to go to that elment in linkedList that is also O(n)
+- remove(n) - O(1)  //faster than arrayList Also consider O(n) of get
+
+But if you are doing a lot of changes at a particular place then you dont need to get that element again so its O(1)
+
+Performance difference b/w ArrayList and LinkedList
+----
+- Getting to n in linkedList is O(1) but after then adding element then on is O(1)
+- ArrayList getting there is O(1) but adding is O(n)
+- Position based access (get operations) - used ArrayList
+- Constant and random insertions and removals - LinkedList
+
+## When to use List?
+- Position based access
+- Duplicates doesn't matter
+
+## Sets - No duplicate elements
+Contains no pair of elements e1 and e2 such that e1.equals(e2) returns true
+
+For using set you need to have a proper implementation of equals method otherwise it will use == by default
+
+What about null?
+-----
+At most can have one null
+-----
+
+
+## HashSet - no order
+
+Set does not have get() but have contains()
+
+HashSet -- implemented by Hashtable
+---
+
+The way the hashSet is by holding on to the elements mapping it based on hashCode
+
+First it generates the hashCode and based on the hashCode it puts the element in one bucket
+
+There is a potential of hash Collision...So every hashCode has a list and it puts the element in the list that is mapped to the hashcode
+
+Hash Bucket structure
+
+- contigous
+- LinkedList --- is the one for adding elements in bucket mapped to hashcode (facilitate retrieval and additon) adding at the end, removal rmeove any where in between --- read (scanning so same for both arrayList and linkedList)
+
+
+HashSet efficiency  
+- adding O(1) figure out the hashCode find the bucket and add at the end
+- removing O(1) depends on hashCollisions too
+- contains O(1)
+
+
+Initial capacity of hashSet
+- A array of size 16 and maps all of the possible integer values of hashCode that the hashCode() could provide to one of the 16 buckets
+
+
+Adjusts over time by load factor 
+---
+number of elements / number of buckets
+
+when Load factor reaches a limit it doubles the capacity.
+16X2=32
+
+0.75 is default Load factor
+------
+
+Use same property for hashCode and equals. If you use two properties of an object in equals and three in hashCode imagine if third property only changed and so hashCode value wil change and equals will be same then.
+So breach of contract.
+
+
+## LinkedHashSet - Ordered HashSet
+
+
+Mantains a pointer to next elements as in LinkedList.
+- insertion order
+- Ordered iteration O(1)
+
+
+ Rest same 
+
+## TreeSet -- have its own way of contains by binary search TreeSet
+
+adding, removal, checking is all O(logn)  becasue of binary tree
+
+- TreeSet - Every element (Class) must be Comparable
+calls compareTo() method. 
+- compareTo() and equals() should be consistent
+
+Issue - Imbalanced tree --- 
+
+When to use set?
+- Position is not important
+- Fast Lookup
+- Fast contains checking
+
+HashSet vs TreeSet
+- Use Hash set when Order is not important, sorting is not important, good hashing strategy, predicatable load factor
+
